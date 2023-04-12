@@ -11,4 +11,4 @@ def solution(x_success: int,
     # Измените код этой функции
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
-    return (y_success/y_cnt - x_success/x_cnt) > 0 # Ваш ответ, True или False
+    return (y_success/y_cnt - x_success/x_cnt) > 0.07 # Ваш ответ, True или False
