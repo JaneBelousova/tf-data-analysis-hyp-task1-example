@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from scipy.stats import norm
+from statsmodels.stats.proportion import proportions_ztest
 
 chat_id = 1124136722 # Ваш chat ID, не меняйте название переменной
 
@@ -12,7 +12,5 @@ def solution(x_success: int,
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
     alfa=0.07
-    threshold = x_success/x_cnt
-    conversion = y_success/y_cnt # наше ограничение слева
-    p = norm.cdf(np.sqrt(y_cnt) * (conversion - threshold) / np.sqrt(conversion * (1 - conversion)))
-    return p >= (1 - alfa) # Ваш ответ, True или False
+    _, p = proportions_ztest([x_success, y_success],[x_cnt, y_cnt], alternative = "smaller")
+    return p < alfa # True (отклонить Но, конверсия не увеличится) или False (принять Но, конверсия увеличится)
